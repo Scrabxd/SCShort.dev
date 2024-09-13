@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Inter-bold';
+    src: url('./assets/fonts/Inter_28pt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('./assets/fonts/Inter_28pt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Firma';
+    src: url('./assets/fonts/PlaywriteCU-VariableFont_wght.ttf') format('truetype');
+}
+
+
+body{
+    background-color: #0B101B;
+}
+
+h1 {
+    font-size: 5rem;
+    background: linear-gradient(90deg, rgba(143,0,255,1) 15%, rgba(59,145,243,1) 35%, rgba(27,200,238,1) 55%, rgba(88,33,242,1) 75%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
