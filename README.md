@@ -2,6 +2,8 @@
 
 ![SCSHORT](./public/SCSHORT.jpeg)
 
+Logo created with Designer microsoft. AI
+
 ## What is SCShort?
 
 SCShort is a url shortner inspired by *TinyUrl*, it uses ___Fiber___ and ***GoLang*** as a backend, as well as ***MongoDB*** and ***Redis*** for database solutions

@@ -1,7 +1,7 @@
-import { FC, useRef, useState } from "react";
+import { FC, useRef, useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import QRCode from "react-qr-code";
-import { PiCopyLight,PiXLight } from 'react-icons/pi';
+import { PiCopyLight, PiXLight } from 'react-icons/pi';
 
 interface QRCodeProps {
   shortLink: string;
@@ -10,19 +10,22 @@ interface QRCodeProps {
 export const ShortLink: FC<QRCodeProps> = ({ shortLink }) => {
 
   const [visible, setVisible] = useState(true);
-  const svgRef = useRef<SVGSVGElement | null>(null);
+  const svgContainerRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const downloadQRCode = () => {
-    if (svgRef.current) {
-      const svgData = new XMLSerializer().serializeToString(svgRef.current);
-      const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
-      const url = URL.createObjectURL(svgBlob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "qrcode.svg";
-      link.click();
-      URL.revokeObjectURL(url);
+    if (svgContainerRef.current) {
+      const svgElement = svgContainerRef.current.querySelector("svg");
+      if (svgElement) {
+        const svgData = new XMLSerializer().serializeToString(svgElement);
+        const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
+        const url = URL.createObjectURL(svgBlob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "qrcode.svg";
+        link.click();
+        URL.revokeObjectURL(url);
+      }
     }
   };
 
@@ -57,16 +60,16 @@ export const ShortLink: FC<QRCodeProps> = ({ shortLink }) => {
               onClick={closeModal}
               className="absolute top-4 right-4 text-white text-[32px] font-bold"
             >
-              <PiXLight/>
+              <PiXLight />
             </button>
 
             <div className="flex flex-col items-center mb-4">
-              <QRCode
-                value={shortLink}
-                size={256}
-                renderAs="svg"
-                ref={svgRef}
-              />
+              <div ref={svgContainerRef}>
+                <QRCode
+                  value={shortLink}
+                  size={256}
+                />
+              </div>
               <button
                 onClick={downloadQRCode}
                 className="mt-4 px-4 py-2 bg-button text-white rounded-md font-inter-font-semibold"
