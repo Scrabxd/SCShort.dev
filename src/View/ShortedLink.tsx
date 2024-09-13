@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useEffect } from "react";
+import { FC, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import QRCode from "react-qr-code";
 import { PiCopyLight, PiXLight } from 'react-icons/pi';
